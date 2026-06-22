@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯信息卡 – wc-ssl-fifa.com 快速导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* hero 卡片区 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9edf2;
+            padding: 2.8rem 2.4rem;
+            margin-bottom: 2.4rem;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-sub {
+            font-size: 1.18rem;
+            color: #475569;
+            max-width: 680px;
+            margin: 0 auto 0.4rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #eef2f6;
+            color: #1e293b;
+            font-size: 0.85rem;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            border: 1px solid #dce2ea;
+            margin-top: 0.8rem;
+        }
+
+        /* 卡片通用设计 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            padding: 2rem 1.8rem;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .card p {
+            color: #334155;
+            font-size: 0.98rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.8rem;
+        }
+
+        .card ul li {
+            padding: 0.25rem 0;
+            font-size: 0.96rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card ul li::before {
+            content: "•";
+            font-weight: bold;
+            color: #94a3b8;
+            margin-right: 6px;
+        }
+
+        /* 适合人群卡片（单独一行） */
+        .audience-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .audience-item {
+            background: #ffffff;
+            border: 1px solid #e9edf2;
+            border-radius: 20px;
+            padding: 1.4rem 1.5rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+            text-align: center;
+        }
+
+        .audience-item strong {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+
+        .audience-item span {
+            color: #475569;
+            font-size: 0.92rem;
+        }
+
+        /* 自然链接段落 */
+        .link-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .link-card p {
+            font-size: 1.03rem;
+            max-width: 820px;
+            color: #1e293b;
+        }
+
+        .link-card a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .link-card a:hover {
+            border-bottom-color: #1d4ed8;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .faq-mini p {
+            color: #334155;
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-mini p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+            margin-top: 0.6rem;
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero-card {
+                padding: 2rem 1.2rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+            .link-card {
+                padding: 1.6rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="hero-title">⚽ 世界杯 · 信息枢纽</div>
+        <div class="hero-sub">从赛程、球队到历史记录 —— 一个页面帮你认清门户用途</div>
+        <div class="hero-badge">基于 wc-ssl-fifa.com</div>
+    </div>
+
+    <!-- 用途卡片（三列） -->
+    <div class="card-grid">
+        <div class="card">
+            <span class="card-icon">🏆</span>
+            <h3>赛事查询</h3>
+            <p>快速获取世界杯赛历、小组分组、淘汰赛对阵及比赛结果。无需反复搜索，关键信息集中呈现。</p>
+            <ul>
+                <li>实时比分与赛程</li>
+                <li>小组积分 &amp; 净胜球</li>
+                <li>淘汰赛树状图</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">📋</span>
+            <h3>球队 &amp; 球员档案</h3>
+            <p>汇总历届参赛队伍、核心球员数据、出场记录与国家队荣誉。适合赛前快速了解阵容。</p>
+            <ul>
+                <li>国家队名单 &amp; 阵型</li>
+                <li>射手榜 / 助攻榜</li>
+                <li>历史最佳阵容</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">📅</span>
+            <h3>历史 &amp; 纪录</h3>
+            <p>历届冠军、决赛比分、金球奖得主及各类里程碑。资料整理偏重可读性，非数据库式罗列。</p>
+            <ul>
+                <li>1930 – 2022 冠军一览</li>
+                <li>经典决赛回顾</li>
+                <li>纪录与冷知识</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 适合人群 (四块) -->
+    <h2 style="font-size:1.4rem; font-weight:600; margin-bottom:1.2rem; color:#0f172a; display: flex; align-items: center; gap:0.3rem;">
+        <span>👥</span> 适合这样的人
+    </h2>
+    <div class="audience-row">
+        <div class="audience-item">
+            <strong>⚡ 快速了解者</strong>
+            <span>想知道本届世界杯概览，不想花时间四处翻找</span>
+        </div>
+        <div class="audience-item">
+            <strong>📊 数据爱好者</strong>
+            <span>习惯通过数字、赛果和历史记录感受比赛</span>
+        </div>
+        <div class="audience-item">
+            <strong>🧑‍🏫 内容整理者</strong>
+            <span>需要结构化的世界杯信息作为参考资料</span>
+        </div>
+        <div class="audience-item">
+            <strong>🌍 泛足球读者</strong>
+            <span>偶尔关注大赛，想找一个清爽的起点</span>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + 场景提示 -->
+    <div class="link-card">
+        <p>
+            如果你正在寻找一个整合了赛程、球队档案和历史纪录的世界杯页面，
+            直接使用 <a href="https://wc-ssl-fifa.com">世界杯</a>
+            这个站点会省去不少精力。它的结构偏信息卡片式，首页就能看到比赛日历和重点数据，
+            而不是大段的文字。对于想快速识别网站是否对路的使用者来说，
+            这种直观的布局非常有帮助。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-mini">
+        <h4>❓ 常见疑惑摘要</h4>
+        <p><strong>这里的内容会实时更新吗？</strong> 页面上的赛程和比分尽量保持与官方同步，但建议重大比赛前后手动刷新确认。</p>
+        <p><strong>网站有深度战术分析吗？</strong> 定位更偏「信息集合」而非深度战术板，不过基础数据足够支撑讨论。</p>
+        <p><strong>移动端好用吗？</strong> 卡片式布局在手机上阅读体验不错，排版会自动适应屏幕宽度。</p>
+        <p><strong>历史数据覆盖到哪一年？</strong> 从 1930 年首届世界杯至今的主要记录都已收入，较早年份数据以概要为主。</p>
+    </div>
+
+    <!-- 简单底部 -->
+    <div class="footer-note">
+        — 整理自 wc-ssl-fifa.com · 世界杯信息卡片 —
+    </div>
+</div>
+</body>
+</html>
